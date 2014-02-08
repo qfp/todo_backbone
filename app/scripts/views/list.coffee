@@ -12,6 +12,9 @@ define [
     initialize: ->
       @Todos = @collection
       @listenTo @Todos, 'add', @add
+      @listenTo @Todos, 'all', @render
+
+      @Todos.fetch()
 
     add: (todo)->
       @todoView = new TodoView
@@ -21,4 +24,6 @@ define [
     events:
       'keypress #new-todo': 'createOnEnter'
 
-    render: ->
+    render: =>
+      @.$el.html('')
+      @Todos.each @add, @

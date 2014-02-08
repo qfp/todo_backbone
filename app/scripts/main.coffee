@@ -23,8 +23,17 @@ require.config
 
 require [
   'backbone'
+  'collections/todo'
   'views/new'
-], (Backbone, NewView) ->
-
+  'views/list'
+], (
+Backbone,
+TodoCollection,
+NewView,
+ListView) ->
   Backbone.history.start()
-  new NewView()
+
+  Todos = new TodoCollection
+
+  new NewView collection: Todos
+  new ListView collection: Todos

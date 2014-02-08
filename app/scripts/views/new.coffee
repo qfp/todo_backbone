@@ -12,11 +12,7 @@ define [
     el: '#new-view'
 
     initialize: ->
-      #alert 1
-      @Todos = new TodoCollection
-      new ListView
-        collection: @Todos
-
+      @Todos = @collection
 
     events:
       'keypress #new-todo': 'createOnEnter'

@@ -17,8 +17,7 @@ define [
       @Todos.fetch()
 
     add: (todo)->
-      @todoView = new TodoView
-        model: todo
+      @todoView = new TodoView model: todo
       this.$el.append @todoView.render
 
     events:

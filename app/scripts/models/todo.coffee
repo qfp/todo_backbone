@@ -4,6 +4,7 @@ define [
 ], (_, Backbone) ->
   'use strict';
   class TodoModel extends Backbone.Model
-    default:
+
+    defaults:
       completed: false
       title: ""

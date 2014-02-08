@@ -10,7 +10,10 @@ define [
     tagName: 'li'
 
     events:
-      "click .destroy": "destroy"
+      "click .destroy" : "destroy"
+      "dblclick label" : "edit"
+      'blur .edit'     : 'updateTitle'
+      'keypress .edit' : 'updateTitle'
     initialize: ->
       @todo = @model
 
@@ -19,3 +22,12 @@ define [
 
     destroy: ->
       @todo.destroy()
+
+    edit: ->
+      @.$el.addClass("editing")
+      @.$(".edit").focus()
+
+    updateTitle: ->
+      newTitle = @.$(".edit").val().trim()
+      @todo.save title: newTitle if newTitle
+      @.$el.removeClass("editing")

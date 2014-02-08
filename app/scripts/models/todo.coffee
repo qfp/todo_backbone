@@ -5,5 +5,5 @@ define [
   'use strict';
   class TodoModel extends Backbone.Model
     default:
-      title: "",
       completed: false
+      title: ""

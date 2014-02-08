@@ -14,9 +14,9 @@ define [
     initialize: ->
       #alert 1
       @Todos = new TodoCollection
-      new ListView({
-        Todos: 'dd'
-         })
+      new ListView
+        collection: @Todos
+
 
     events:
       'keypress #new-todo': 'createOnEnter'

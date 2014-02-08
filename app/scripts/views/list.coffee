@@ -3,14 +3,20 @@ define [
   'underscore'
   'backbone'
   'templates'
-], ($, _, Backbone, JST) ->
+  'views/todo'
+], ($, _, Backbone, JST, TodoView) ->
 
   class ListView extends Backbone.View
     el: '#todo-list'
 
     initialize: ->
-      alert @Todos
-      # @listenTo @Todos, 'all', @render
+      @Todos = @collection
+      @listenTo @Todos, 'add', @add
+
+    add: (todo)->
+      @todoView = new TodoView
+        model: todo
+      this.$el.append @todoView.render
 
     events:
       'keypress #new-todo': 'createOnEnter'

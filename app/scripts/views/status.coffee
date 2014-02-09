@@ -17,8 +17,14 @@ define [
 
       @Todos.fetch()
 
+    events:
+      'click #clear-completed' : 'clearCompleted'
+
     render: =>
       @.$el.html @template 
         completed: @Todos.completed().length
         remaining: @Todos.remaining().length
+
+    clearCompleted: ->
+      @Todos.clearCompleted()
 

@@ -17,4 +17,7 @@ define [
       @where completed: true
 
     remaining: ->
-      @where completed: false
+      @where completed: false 
+
+    clearCompleted: ->
+      _.invoke(@completed(), 'destroy');

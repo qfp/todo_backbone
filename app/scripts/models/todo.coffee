@@ -8,3 +8,7 @@ define [
     defaults:
       completed: false
       title: ""
+
+    toggleCompleted: ->
+      @save
+        completed: not @get 'completed'

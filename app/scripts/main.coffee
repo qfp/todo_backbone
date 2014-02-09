@@ -26,14 +26,18 @@ require [
   'collections/todo'
   'views/new'
   'views/list'
+  'views/status'
 ], (
 Backbone,
 TodoCollection,
 NewView,
-ListView) ->
+ListView,
+SatusView) ->
   Backbone.history.start()
 
   Todos = new TodoCollection
 
   new NewView collection: Todos
   new ListView collection: Todos
+  new SatusView collection: Todos
+

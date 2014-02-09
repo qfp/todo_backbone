@@ -22,4 +22,5 @@ define [
       $input = $(e.currentTarget)
       @Todos.create
         title: $input.val()
+      
       $input.val('')

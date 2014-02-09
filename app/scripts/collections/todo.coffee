@@ -12,3 +12,9 @@ define [
     toggleAllCompleted: ->
       @.each (todo) ->
         todo.toggleCompleted()
+
+    completed: ->
+      @where completed: true
+
+    remaining: ->
+      @where completed: false

@@ -25,9 +25,14 @@ define [
     events:
       'keypress #new-todo' : 'createOnEnter'
       'click #toggle-all'  : 'toggleAllCompleted'
-    render: =>
+    render: (options)=>
       @.$ul.html ""
-      @Todos.each @add, @
+      todos = options.todos
+      unless todos
+        @Todos.each @add, @
+      else
+        _(todos).each (todo) =>
+          @add todo
 
     toggleAllCompleted: ->
       @Todos.toggleAllCompleted()

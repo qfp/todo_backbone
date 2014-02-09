@@ -19,6 +19,7 @@ define [
 
     events:
       'click #clear-completed' : 'clearCompleted'
+      'click #filters li a' : 'moveSelectedClass'
 
     render: =>
       @.$el.html @template 
@@ -28,3 +29,6 @@ define [
     clearCompleted: ->
       @Todos.clearCompleted()
 
+    moveSelectedClass: (e)->
+      $("#filters li a").removeClass("selected")      
+      $(e.currentTarget).addClass("selected")

@@ -8,3 +8,7 @@ define [
   class TodoCollection extends Backbone.Collection
     model: TodoModel
     localStorage: new LocalStorage 'todos-backbone'
+
+    toggleAllCompleted: ->
+      @.each (todo) ->
+        todo.toggleCompleted()

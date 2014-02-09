@@ -18,11 +18,8 @@ define [
       'keypress #new-todo': 'createOnEnter'
 
     createOnEnter: (e) ->
-      if e.keyCode isnt 13
-        return
+      return if e.keyCode isnt 13
       $input = $(e.currentTarget)
-
       @Todos.create
         title: $input.val()
-
       $input.val('')

@@ -28,3 +28,6 @@ define [
     render: =>
       @.$ul.html ""
       @Todos.each @add, @
+
+    toggleAllCompleted: ->
+      @Todos.toggleAllCompleted()

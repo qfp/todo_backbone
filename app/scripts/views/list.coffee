@@ -7,22 +7,24 @@ define [
 ], ($, _, Backbone, JST, TodoView) ->
 
   class ListView extends Backbone.View
-    el: '#todo-list'
+    el: '#list-view'
 
     initialize: ->
       @Todos = @collection
+      @.$ul = @.$("#todo-list")
+
       @listenTo @Todos, 'add', @add
       @listenTo @Todos, 'all', @render
 
       @Todos.fetch()
 
-    add: (todo)->
+    add: (todo)=>
       @todoView = new TodoView model: todo
-      this.$el.append @todoView.render
+      @.$ul.append @todoView.render
 
     events:
-      'keypress #new-todo': 'createOnEnter'
-
+      'keypress #new-todo' : 'createOnEnter'
+      'click #toggle-all'  : 'toggleAllCompleted'
     render: =>
-      @.$el.html('')
+      @.$ul.html ""
       @Todos.each @add, @

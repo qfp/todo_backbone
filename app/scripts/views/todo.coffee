@@ -14,12 +14,13 @@ define [
       "dblclick label" : "edit"
       'blur .edit'     : 'updateTitle'
       'keypress .edit' : 'updateTitle'
-      'click .toggle' : 'toggleCompleted'
+      'click .toggle'  : 'toggleCompleted'
     initialize: ->
       @todo = @model
 
     render: =>
       @.$el.html(@template @todo.toJSON())
+      @.$input = @.$(".edit")
       @.$el.toggleClass('completed', @todo.get('completed'))
 
     destroy: ->
@@ -27,10 +28,10 @@ define [
 
     edit: ->
       @.$el.addClass("editing")
-      @.$(".edit").focus()
+      @.$input.focus()
 
     updateTitle: ->
-      newTitle = @.$(".edit").val().trim()
+      newTitle = @.$input.val().trim()
       @todo.save title: newTitle if newTitle
       @.$el.removeClass("editing")
 

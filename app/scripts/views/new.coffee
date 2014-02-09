@@ -21,9 +21,8 @@ define [
       if e.keyCode isnt 13
         return
       $input = $(e.currentTarget)
-      _title = $input.val()
-
-      $input.val('')
 
       @Todos.create
-        title: _title
+        title: $input.val()
+
+      $input.val('')

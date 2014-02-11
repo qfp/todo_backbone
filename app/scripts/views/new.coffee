@@ -3,9 +3,8 @@ define [
   'underscore'
   'backbone'
   'templates'
-  'collections/todo'
   'views/list'
-], ($, _, Backbone, JST, TodoCollection, ListView) ->
+], ($, _, Backbone, JST, ListView) ->
 
   class NewView extends Backbone.View
 
@@ -20,7 +19,6 @@ define [
     createOnEnter: (e) ->
       return if e.keyCode isnt 13
       $input = $(e.currentTarget)
-      @Todos.create
-        title: $input.val()
+      @Todos.create title: $input.val()
       
       $input.val('')

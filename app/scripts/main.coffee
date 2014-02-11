@@ -16,14 +16,14 @@ require.config
       exports: 'jquery'
   paths:
     jquery: '../bower_components/jquery/jquery'
-    backbone: '../bower_components/backbone/backbone-min'
+    backbone: '../bower_components/backbone/backbone'
     underscore: '../bower_components/underscore/underscore'
     bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap'
     localStorage: '../bower_components/backbone.localStorage/backbone.localStorage'
 
 require [
   'backbone'
-  'collections/todo'
+  'collections/todos'
   'views/new'
   'views/list'
   'views/status'
@@ -41,6 +41,8 @@ Router) ->
 
   new NewView collection: Todos
   new SatusView collection: Todos
+
+  Todos.fetch()
 
   router.on "route:showActive", ->
     listView.render todos: Todos.active()

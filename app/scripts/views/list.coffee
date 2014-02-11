@@ -16,23 +16,21 @@ define [
       @listenTo @Todos, 'add', @add
       @listenTo @Todos, 'all', @render
 
-      @Todos.fetch()
-
-    add: (todo)=>
+    add: (todo)->
       @todoView = new TodoView model: todo
-      @.$ul.append @todoView.render
+      @.$ul.append @todoView.$el
 
     events:
       'keypress #new-todo' : 'createOnEnter'
       'click #toggle-all'  : 'toggleAllCompleted'
-    render: (options)=>
+
+    render: (options)->
       @.$ul.html ""
       todos = options.todos
-      unless todos
-        @Todos.each @add, @
+      if todos
+        _(todos).each (todo) => @add todo
       else
-        _(todos).each (todo) =>
-          @add todo
+        @Todos.each @add, @
 
     toggleAllCompleted: ->
       @Todos.toggleAllCompleted()

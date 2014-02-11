@@ -10,5 +10,4 @@ define [
       title: ""
 
     toggleCompleted: ->
-      @save
-        completed: not @get 'completed'
+      @save completed: not @get 'completed'

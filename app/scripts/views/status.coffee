@@ -12,14 +12,11 @@ define [
 
     initialize: ->
       @Todos = @collection
-
       @listenTo @Todos, 'all', @render
-
-      @Todos.fetch()
 
     events:
       'click #clear-completed' : 'clearCompleted'
-      'click #filters li a' : 'moveSelectedClass'
+      'click #filters a' : 'moveSelectedClass'
 
     render: =>
       @.$el.html @template 

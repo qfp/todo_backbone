@@ -13,14 +13,15 @@ define [
       "click .destroy" : "destroy"
       "dblclick label" : "edit"
       'blur .edit'     : 'updateTitle'
-      'keypress .edit' : 'updateTitle'
+      'keypress .edit' : 'updateTitleOnEnter'
       'click .toggle'  : 'toggleCompleted'
     initialize: ->
       @todo = @model
-
-    render: =>
-      @.$el.html(@template @todo.toJSON())
+      @render()
       @.$input = @.$(".edit")
+
+    render: ->
+      @.$el.html(@template @todo.toJSON())
       @.$el.toggleClass('completed', @todo.get('completed'))
 
     destroy: ->
@@ -28,12 +29,15 @@ define [
 
     edit: ->
       @.$el.addClass("editing")
-      @.$input.focus()
+      #@.$input.focus()
 
     updateTitle: ->
       newTitle = @.$input.val().trim()
       @todo.save title: newTitle if newTitle
       @.$el.removeClass("editing")
+
+    updateTitleOnEnter: (e)->
+      @updateTitle() if e.keyCode is 13
 
     toggleCompleted: ->
       @todo.toggleCompleted()

@@ -9,9 +9,11 @@ define [
   class ListView extends Backbone.View
     el: '#list-view'
 
-    initialize: ->
+    initialize: (options)->
       @Todos = @collection
+      @todos = options.todos
       @.$ul = @.$("#todo-list")
+      @render()
 
       @listenTo @Todos, 'add', @add
       @listenTo @Todos, 'all', @render
@@ -24,13 +26,9 @@ define [
       'keypress #new-todo' : 'createOnEnter'
       'click #toggle-all'  : 'toggleAllCompleted'
 
-    render: (options)->
+    render: ->
       @.$ul.html ""
-      todos = options.todos
-      if todos
-        _(todos).each (todo) => @add todo
-      else
-        @Todos.each @add, @
+      _(@todos).each (todo) => @add todo
 
     toggleAllCompleted: ->
       @Todos.toggleAllCompleted()

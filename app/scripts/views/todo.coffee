@@ -1,6 +1,7 @@
 define [
   'jquery'
   'underscore'
+
   'backbone'
   'templates'
 ], ($, _, Backbone, JST) ->
@@ -29,7 +30,7 @@ define [
 
     edit: ->
       @.$el.addClass("editing")
-      #@.$input.focus()
+      @.$input.focus()
 
     updateTitle: ->
       newTitle = @.$input.val().trim()

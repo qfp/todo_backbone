@@ -12,6 +12,7 @@ define [
 
     initialize: ->
       @Todos = @collection
+      @render()
       @listenTo @Todos, 'all', @render
 
     events:

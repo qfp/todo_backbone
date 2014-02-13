@@ -36,21 +36,4 @@ ListView,
 SatusView,
 Router) ->
   router = new Router()
-  Todos = new TodoCollection
-  listView = new ListView collection: Todos
-
-  new NewView collection: Todos
-  new SatusView collection: Todos
-
-  Todos.fetch()
-
-  router.on "route:showActive", ->
-    listView.render todos: Todos.active()
-
-  router.on "route:showCompleted", ->
-    listView.render todos: Todos.completed()
-
-  router.on "route:showAll", ->
-    listView.render todos: Todos.models
-
   Backbone.history.start()

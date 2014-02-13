@@ -1,6 +1,6 @@
 define [
   'backbone'
-  'collections/todo'
+  'collections/todos'
   'views/new'
   'views/list'
   'views/status'
@@ -10,22 +10,16 @@ define [
       "active": "showActive"
       "completed": "showCompleted"
       "all": "showAll"
-    
-   #  initialize: ->
-   #  	@Todos = new TodoCollection
-   #  	new NewView collection: @Todos
-   #  	@listView = new ListView collection: @Todos
-   #  	new StatusView collection: @Todos
 
-   #  completed: ->
-   #  	alert "completed"
-			# #@listView.render
-			# 	#todos: @Todos.completed()
+    showCompleted: ->
+      new ListView collection: @Todos, todos: @Todos.completed()
 
-	  # active: ->
-	  # 	alert "active"
-   #  	#@listView.render
-   #  		#todos: @Todos.remaining()
+    showActive: ->
+      new ListView collection: @Todos, todos: @Todos.remaining()
 
-
-
+    initialize: ->
+      @Todos = new TodoCollection()
+      @Todos.fetch()
+      new NewView collection: @Todos
+      new ListView collection: @Todos, todos: @Todos.models
+      new StatusView collection: @Todos

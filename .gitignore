@@ -1,5 +1,6 @@
 .tmp
 .sass-cache/
 bower_components/
+test/bower_components/
 node_modules/
 

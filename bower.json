@@ -9,7 +9,8 @@
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
     "modernizr": "~2.6.2",
-    "backbone.localStorage": "~1.1.7"
+    "backbone.localStorage": "~1.1.7",
+    "jasmine": "~2.0.0"
   },
   "devDependencies": {
     "todomvc-common": "~0.1.9"

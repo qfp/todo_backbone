@@ -10,16 +10,26 @@ define [
       "active": "showActive"
       "completed": "showCompleted"
       "all": "showAll"
+      "*default": "showAll"
 
     showCompleted: ->
-      new ListView collection: @Todos, todos: @Todos.completed()
+      @listView.render methodName: "completed"  
+      @statusView.render()
 
     showActive: ->
-      new ListView collection: @Todos, todos: @Todos.remaining()
+      @listView.render methodName: "active" 
+      @statusView.render()
+
+    showAll: ->
+      @listView.render methodName: "all" 
+      @statusView.render()
 
     initialize: ->
       @Todos = new TodoCollection()
       @Todos.fetch()
+      
       new NewView collection: @Todos
-      new ListView collection: @Todos, todos: @Todos.models
-      new StatusView collection: @Todos
+      @listView = new ListView collection: @Todos
+      @statusView = new StatusView collection: @Todos
+      
+

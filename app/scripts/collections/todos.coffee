@@ -24,3 +24,6 @@ define [
 
     clearCompleted: ->
       _.invoke(@completed(), 'destroy');
+
+    all: ->
+      @models

@@ -12,21 +12,31 @@ define [
 
     initialize: ->
       @Todos = @collection
-      @render()
+
       @listenTo @Todos, 'all', @render
+      @render()
 
     events:
       'click #clear-completed' : 'clearCompleted'
-      'click #filters a' : 'moveSelectedClass'
 
-    render: =>
+    render: ->
       @.$el.html @template 
         completed: @Todos.completed().length
         remaining: @Todos.remaining().length
+      @adjustSelectedClass()
 
     clearCompleted: ->
       @Todos.clearCompleted()
 
-    moveSelectedClass: (e)->
-      $("#filters li a").removeClass("selected")      
-      $(e.currentTarget).addClass("selected")
+    adjustSelectedClass: ->
+      $("#filters a").removeClass("selected")      
+      @currentActiveLink().addClass("selected")
+
+    currentActiveLink: ->
+      router = Backbone.history.fragment
+      candidateLink = $("#filters a[href$="+router+"]")
+      
+      if candidateLink.length isnt 0
+        return candidateLink
+      else
+        return $("#filters a[href$='all']")

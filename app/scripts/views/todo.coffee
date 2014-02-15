@@ -21,6 +21,8 @@ define [
       @render()
       @.$input = @.$(".edit")
 
+      @listenTo @todo, "change", @render
+
     render: ->
       @.$el.html(@template @todo.toJSON())
       @.$el.toggleClass('completed', @todo.get('completed'))
